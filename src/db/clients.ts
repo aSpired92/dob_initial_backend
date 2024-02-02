@@ -2,24 +2,36 @@ import mongoose from "mongoose";
 
 const ClientSchema = new mongoose.Schema({
     name: {
-        "type": String
+        type: String,
+        required: true
     },
     category: {
-        "type": String,
-        "enum": ["Instytucja państwowa", "Firma prywatna", "Osoba fizyczna"]
+        type: String,
+        "enum": ["Instytucja państwowa", "Firma prywatna", "Osoba fizyczna"],
+        required: true
     },
     city: {
-        "type": String,
+        type: String,
+        required: true
     },
     street: {
-        "type": String,
+        type: String,
+        required: true
     },
     number: {
-        "type": String,
+        type: String,
+        required: true
     },
-    postCode: {
-        "type": String
+    postcode: {
+        type: String,
+        required: true
     }
 })
 
-export const ClientModel = mongoose.model('client', ClientSchema)
+const ClientModel = mongoose.model('client', ClientSchema)
+
+export const createClient = (clientData: Record<string, any>) => ClientModel.create(clientData);
+export const getClientById = (clientId: string) => ClientModel.findById(clientId);
+export const updateClient = (clientId: string, updatedData: Record<string, any>) => ClientModel.findByIdAndUpdate(clientId, updatedData);
+export const deleteClient = (clientId: string) => ClientModel.findByIdAndDelete(clientId);
+export const getAllClients = () => ClientModel.find({});
