@@ -24,6 +24,7 @@ export const getClientByIdEndpoint = async (req: Request, res: Response): Promis
         }
         res.status(200).json(client);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Internal server error' });
     }
 };
@@ -40,6 +41,7 @@ export const updateClientEndpoint = async (req: Request, res: Response): Promise
         }
         res.status(200).json(updatedClient);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Internal server error' });
     }
 };
@@ -55,6 +57,7 @@ export const deleteClientEndpoint = async (req: Request, res: Response): Promise
         }
         res.status(200).json(deletedClient);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Internal server error' });
     }
 };
@@ -65,6 +68,7 @@ export const getAllClientsEndpoint = async (req: Request, res: Response): Promis
         const clients = await getAllClients();
         res.status(200).json(clients);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Internal server error' });
     }
 };
