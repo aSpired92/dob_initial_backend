@@ -1,5 +1,12 @@
 import { Request, Response } from 'express';
-import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "../db/products";
+import {
+    createProduct,
+    deleteProduct,
+    getAllProducts,
+    getProductById,
+    getProductCategories,
+    updateProduct
+} from "../db/products";
 
 // Create a new product
 export const createProductEndpoint = async (req: Request, res: Response): Promise<void> => {
@@ -72,3 +79,12 @@ export const getAllProductsEndpoint = async (req: Request, res: Response): Promi
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+export const getProductCategoriesEndpoint = async (req: Request, res: Response): Promise<void> => {
+    try {
+        res.status(200).json(getProductCategories());
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}

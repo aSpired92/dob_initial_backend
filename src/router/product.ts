@@ -4,10 +4,12 @@ import {
     deleteProductEndpoint,
     getAllProductsEndpoint,
     getProductByIdEndpoint,
+    getProductCategoriesEndpoint,
     updateProductEndpoint
 } from "../controllers/product";
 
 export default (router: express.Router) => {
+    router.get('/products/categories', getProductCategoriesEndpoint);
     router.post('/products', createProductEndpoint);
     router.get('/products/:id', getProductByIdEndpoint);
     router.put('/products/:id', updateProductEndpoint);
