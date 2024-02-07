@@ -48,7 +48,7 @@ const ClientSchema = new mongoose.Schema({
     }
 })
 
-const ClientModel = mongoose.model('client', ClientSchema)
+export const ClientModel = mongoose.model('client', ClientSchema)
 
 export const createClient = (clientData: Record<string, any>) => ClientModel.create(clientData);
 export const getClientById = (clientId: string) => ClientModel.findById(clientId);

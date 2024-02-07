@@ -4,9 +4,9 @@ import { createOrder, deleteOrder, getAllOrders, getOrderById, updateOrder } fro
 // Create a new order
 export const createOrderEndpoint = async (req: Request, res: Response): Promise<void> => {
     try {
-        const orderData = req.body.order;
+        const client = req.body.client;
         const elements = req.body.elements;
-        const createdOrder = await createOrder(orderData, elements);
+        const createdOrder = await createOrder(client, elements);
         res.status(201).json(createdOrder);
     } catch (error) {
         console.log(error)
