@@ -1,5 +1,13 @@
 import { Request, Response } from 'express';
-import { createClient, deleteClient, getAllClients, getClientById, updateClient } from "../db/clients";
+import {
+    createClient,
+    deleteClient,
+    getAllClients,
+    getClientById,
+    getClientCategories,
+    updateClient
+} from "../db/clients";
+import {getProductCategories} from "../db/products";
 
 // Create a new client
 export const createClientEndpoint = async (req: Request, res: Response): Promise<void> => {
@@ -72,3 +80,12 @@ export const getAllClientsEndpoint = async (req: Request, res: Response): Promis
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+export const getClientCategoriesEndpoint = async (req: Request, res: Response): Promise<void> => {
+    try {
+        res.status(200).json(getClientCategories());
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
