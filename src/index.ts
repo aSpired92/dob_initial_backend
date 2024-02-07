@@ -7,6 +7,7 @@ import http from "http";
 import mongoose, {Promise} from "mongoose"
 import 'dotenv/config'
 import router from './router'
+import * as process from "process";
 
 
 const app = express()
@@ -21,12 +22,12 @@ app.use(bodyParser.json())
 
 const server = http.createServer(app)
 
-server.listen(8080, () => {
-    console.log("Server running on http://127.0.0.1:8080")
+server.listen(process.env["SERVER_PORT"], () => {
+    console.log(`Server running on http://127.0.0.1:${process.env["SERVER_PORT"]}`)
 })
 
 mongoose.Promise = Promise
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env["MONGO_URL"])
 mongoose.connection.on('error', (error: Error) => console.log(error))
 
 app.use('/', router())
